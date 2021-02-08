@@ -28,7 +28,7 @@ class Schedule extends Controller
 
     }
     function update(Request $rq){
-        $scheduleCustomer = Model::where("customer",$rq->customer)->update($rq->data);
+        $scheduleCustomer = Model::where("customer",$rq->customer)->update($rq->data,["id"=>$rq->id]);
         if($scheduleCustomer){
             return response()->json(["status"=>1]);
         }else{
