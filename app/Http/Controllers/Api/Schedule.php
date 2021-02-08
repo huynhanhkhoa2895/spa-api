@@ -10,7 +10,7 @@ class Schedule extends Controller
 {
     //
     function getListWithId(Request $rq){
-        return response()->json(Model::join("service","service.id","=","schedule.service")->where("customer",$rq->id)->select("schedule.*","service.name as service_name")->get());
+        return response()->json(Model::join("service","service.id","=","schedule.service")->where("customer",$rq->id)->where("status","waiting")->select("schedule.*","service.name as service_name")->get());
     }
     function create(Request $rq){
         $scheduleCustomer = Model::where("customer",$rq->customer)->where("status","waiting")->first();
@@ -29,8 +29,9 @@ class Schedule extends Controller
     }
     function update(Request $rq){
         $scheduleCustomer = Model::where("customer",$rq->customer)->update($rq->data,["id"=>$rq->id]);
+        $list = Model::join("service","service.id","=","schedule.service")->where("customer",$rq->id)->where("status","waiting")->select("schedule.*","service.name as service_name")->get();
         if($scheduleCustomer){
-            return response()->json(["status"=>1]);
+            return response()->json(["status"=>1,"data"=>$list]);
         }else{
             return response()->json(["status"=>0]);
         }
