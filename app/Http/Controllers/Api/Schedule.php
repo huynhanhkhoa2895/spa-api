@@ -10,7 +10,7 @@ class Schedule extends Controller
 {
     //
     function getListWithId(Request $rq){
-        return response()->json(Model::join("service","service.id","=","schedule.service")->where("customer",$rq->id)->select("schedule.*,service.name as service_name")->get());
+        return response()->json(Model::join("service","service.id","=","schedule.service")->where("customer",$rq->id)->select("schedule.*","service.name as service_name")->get());
     }
     function create(Request $rq){
         $scheduleCustomer = Model::where("customer",$rq->customer)->where("status","waiting")->first();
