@@ -15,12 +15,17 @@ use Illuminate\Support\Facades\Route;
 */
 Route::group(["namespace"=>"App\Http\Controllers\Api"],function($router){
     Route::post('login', 'Verify@login');
+    
     Route::group(["prefix"=>"get"],function($router){
         Route::get('banner','Banner@getList');
         Route::get('service','Service@getList');
+        Route::get('schedule/{id}','Schedule@getListWithId');
     });
     Route::group(["prefix"=>"create"],function($router){
         Route::post('schedule','Schedule@create');
+    });
+    Route::group(["prefix"=>"update"],function($router){
+        Route::post('schedule','Schedule@update');
     });
 });
 
