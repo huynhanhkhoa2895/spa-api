@@ -25,7 +25,7 @@ Route::group(["namespace"=>"App\Http\Controllers\Api"],function($router){
         Route::post('schedule','Schedule@create');
     });
     Route::group(["prefix"=>"update"],function($router){
-        Route::post('schedule','Schedule@update');
+        Route::put('schedule','Schedule@update');
     });
 });
 
