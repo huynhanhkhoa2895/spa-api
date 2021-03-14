@@ -12,7 +12,7 @@ class Verify extends Controller
     }
     //
     function login(){
-        $credentials = request(['phone', 'password']);
+        $credentials = request(['phone', 'password', 'spa']);
 
         if (! $token = auth()->guard("customer")->attempt($credentials)) {
             return response()->json(['err' => 1], 200);

@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Service as Model;
-
-class Service extends Controller
+use Illuminate\Http\Response;
+use App\Models\Agency as Model;
+class Agency extends Controller
 {
     //
     function getList(Request $rq){

@@ -17,9 +17,13 @@ Route::group(["namespace"=>"App\Http\Controllers\Api"],function($router){
     Route::post('login', 'Verify@login');
     
     Route::group(["prefix"=>"get"],function($router){
-        Route::get('banner','Banner@getList');
-        Route::get('service','Service@getList');
+        Route::get('banner/{spa}','Banner@getList');
+        Route::get('agency/{spa}','Agency@getList');
+        Route::get('service/{spa}','Service@getList');
+        Route::get('product/{spa}','Product@getList');
         Route::get('schedule/{id}','Schedule@getListWithId');
+        Route::get('schedule/{id}/{spa}/{status}','Schedule@getScheduleWithStatus');
+        Route::get('spa/{spa}','Spa@get');
     });
     Route::group(["prefix"=>"create"],function($router){
         Route::post('schedule','Schedule@create');

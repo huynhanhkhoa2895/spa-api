@@ -21,18 +21,21 @@ class CustomerSeeder extends Seeder
                 'email' => 'customer1@gmail.com',
                 'password' => Hash::make('123456'),
                 'phone' => '01635076638',
+                'spa' => 1,
             ],
             [
                 'name' => 'customer',
                 'email' => 'customer@gmail.com',
                 'password' => Hash::make('123456'),
                 'phone' => '0938247099',
+                'spa' => 1,
             ],
             [
                 'name' => 'customer1',
                 'email' => 'customer2@gmail.com',
                 'phone' => '0335076638',
                 'password' => Hash::make('123456'),
+                'spa' => 1,
             ],
         ]);
     }

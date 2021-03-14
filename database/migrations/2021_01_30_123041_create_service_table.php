@@ -15,10 +15,12 @@ class CreateServiceTable extends Migration
     {
         Schema::create('service', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger("spa");
             $table->string("name");
             $table->text("description")->nullable();
             $table->text("content")->nullable();
             $table->string("img");
+            $table->foreign('spa')->references('id')->on('spa')->onDelete('restrict');
             $table->timestamps();
         });
     }

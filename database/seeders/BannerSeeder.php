@@ -18,18 +18,22 @@ class BannerSeeder extends Seeder
             [
                 'title' => "Banner1",
                 'img' => 'b1.png',
+                'spa' => 1,
             ],
             [
                 'title' => "Banner2",
                 'img' => 'b2.png',
+                'spa' => 1,
             ],
             [
                 'title' => "Banner3",
                 'img' => 'b3.png',
+                'spa' => 1,
             ],
             [
                 'title' => "Banner4",
                 'img' => 'b4.png',
+                'spa' => 1,
             ],
         ]);
     }

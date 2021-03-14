@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCustomerTable extends Migration
+class CreateAgencyTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateCustomerTable extends Migration
      */
     public function up()
     {
-        Schema::create('customer', function (Blueprint $table) {
+        Schema::create('agency', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("spa");
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('phone')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string("name");
+            $table->unsignedBigInteger("spa");            
+            $table->string("address");
+            $table->string("phone");
+            $table->string("long")->nullable();
+            $table->string("lat")->nullable();
             $table->foreign('spa')->references('id')->on('spa')->onDelete('restrict');
             $table->timestamps();
         });
@@ -34,6 +33,6 @@ class CreateCustomerTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customer');
+        Schema::dropIfExists('agency');
     }
 }

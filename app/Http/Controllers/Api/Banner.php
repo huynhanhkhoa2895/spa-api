@@ -9,7 +9,8 @@ use App\Models\Banner as Model;
 class Banner extends Controller
 {
     //
-    function getList(){
-        return response()->json(Model::all());
+    function getList(Request $rq){
+        $data = Model::where("spa",$rq->spa)->get();
+        return response()->json($data);
     }
 }

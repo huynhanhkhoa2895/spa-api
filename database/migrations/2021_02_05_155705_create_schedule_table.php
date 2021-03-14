@@ -16,12 +16,15 @@ class CreateScheduleTable extends Migration
         Schema::create('schedule', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("customer");
+            $table->unsignedBigInteger("spa");
             $table->unsignedBigInteger("service")->nullable();
             $table->string("time");
             $table->string("phone_contact")->nullable();
+            $table->text("note")->nullable();
             $table->enum("status",["waiting","cancel","done"])->default("waiting");
             $table->foreign('customer')->references('id')->on('customer')->onDelete('cascade');
-            $table->foreign('service')->references('id')->on('customer')->onDelete('restrict');
+            $table->foreign('service')->references('id')->on('service')->onDelete('restrict');
+            $table->foreign('spa')->references('id')->on('spa')->onDelete('restrict');
             $table->timestamps();
         });
     }

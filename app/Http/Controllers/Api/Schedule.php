@@ -16,6 +16,7 @@ class Schedule extends Controller
         $scheduleCustomer = Model::where("customer",$rq->customer)->where("status","waiting")->first();
         if(empty($scheduleCustomer)){
             $model = new Model;
+            $model->spa = $rq->spa;
             $model->customer = $rq->customer;
             $model->service = $rq->service;
             $model->time = $rq->time;
@@ -32,6 +33,17 @@ class Schedule extends Controller
         $list = Model::join("service","service.id","=","schedule.service")->where("customer",$rq->id)->where("status","waiting")->select("schedule.*","service.name as service_name")->get();
         if($scheduleCustomer){
             return response()->json(["status"=>1,"data"=>$list]);
+        }else{
+            return response()->json(["status"=>0]);
+        }
+    }
+    function getScheduleWithStatus(Request $rq){
+        $scheduleCustomer = Model::where([["customer",$rq->id],["status",$rq->status],["schedule.spa",$rq->spa]])
+                            ->join("service","service.id","=","schedule.service")
+                            ->select("schedule.*","service.name as service_name")
+                            ->first();
+        if($scheduleCustomer){
+            return response()->json(["status"=>1,"data"=>$scheduleCustomer]);
         }else{
             return response()->json(["status"=>0]);
         }
